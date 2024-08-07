@@ -1,31 +1,45 @@
+const textArea = document.querySelector(".text-area");
+const mensaje = document.querySelector(".mensaje");
+const copyNotification = document.createElement("div");
+copyNotification.className = "copy-notification";
+document.body.appendChild(copyNotification);
 
-const textArea = document.querySelector(".text-area")
-const mensaje = document.querySelector(".mensaje")
+const matrizCodigo = [
+    ["e", "enter"],
+    ["i", "imes"],
+    ["a", "ai"],
+    ["o", "ober"],
+    ["u", "ufat"]
+];
 
-
-//La letra "e" es convertida para "enter"
-//La letra "i" es convertida para "imes"
-//La letra "a" es convertida para "ai"
-//La letra "o" es convertida para "ober"
-//La letra "u" es convertida para "ufat"
-
-
-function btnEncriptar(){
-    const textoEncriptado = encriptar(textArea.value)
-    mensaje.value = textoEncriptado
+function transformarTexto(texto, encriptar = true) {
+    return matrizCodigo.reduce((acc, [original, reemplazo]) => {
+        const [buscar, reemplazar] = encriptar ? [original, reemplazo] : [reemplazo, original];
+        return acc.replaceAll(buscar, reemplazar);
+    }, texto.toLowerCase());
 }
 
-function encriptar(stringEncriptada) {
-    let matrizCodigo = [["e","enter"],["i","imes"],["a","ai"],["o","ober"],["u","ufat"]];
-    stringEncriptada = stringEncriptada.toLowerCase()
-
-    for(let i = 0; i < matrizCodigo.length; i++){
-        if(stringEncriptada.includes(matrizCodigo[i][0])){
-            stringEncriptada = stringEncriptada.replaceAll(matrizCodigo[i][0],matrizCodigo[i][1])
-
-        }
-    }
-    return stringEncriptada
-
+function btnEncriptar() {
+    mensaje.value = transformarTexto(textArea.value, true);
+    textArea.value = "";
+    mensaje.style.backgroundImage = "none";
 }
-//console.table(matrizCodigo)
+
+function btnDesencriptar() {
+    mensaje.value = transformarTexto(textArea.value, false);
+    textArea.value = "";
+}
+
+function copiarTexto() {
+    mensaje.select();
+    document.execCommand("copy");
+    mostrarNotificacion("Texto copiado al portapapeles");
+}
+
+function mostrarNotificacion(mensaje) {
+    copyNotification.textContent = mensaje;
+    copyNotification.style.display = "block";
+    setTimeout(() => {
+        copyNotification.style.display = "none";
+    }, 2000);
+}
