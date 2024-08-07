@@ -1,8 +1,5 @@
 const textArea = document.querySelector(".text-area");
 const mensaje = document.querySelector(".mensaje");
-const copyNotification = document.createElement("div");
-copyNotification.className = "copy-notification";
-document.body.appendChild(copyNotification);
 
 const matrizCodigo = [
     ["e", "enter"],
@@ -33,13 +30,5 @@ function btnDesencriptar() {
 function copiarTexto() {
     mensaje.select();
     document.execCommand("copy");
-    mostrarNotificacion("Texto copiado al portapapeles");
-}
-
-function mostrarNotificacion(mensaje) {
-    copyNotification.textContent = mensaje;
-    copyNotification.style.display = "block";
-    setTimeout(() => {
-        copyNotification.style.display = "none";
-    }, 2000);
+    alert("Texto copiado al portapapeles");
 }
