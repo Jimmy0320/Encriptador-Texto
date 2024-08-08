@@ -41,6 +41,7 @@ main{
     margin-left: 98px;
     padding-left: 20px;
     position: fixed;
+    
 }
 
 .mensaje:focus{
@@ -63,6 +64,10 @@ main{
     width: 328px;
 }
 
+.btn-encriptar:hover {
+    background-color: #07408b;
+}
+
 .btn-desencriptar{
     background: #d8dfe8;
     border: 1px solid #0a3871;
@@ -75,6 +80,10 @@ main{
 
 }
 
+.btn-desencriptar:hover {
+    background-color: #c0c9d3;
+}
+
 .btn-copiar{
     border: 1px solid #0a3871;
     border-radius: 24px;
@@ -85,6 +94,10 @@ main{
     margin-top: 402px;
     position: absolute;
     width: 338px;
+}
+
+.btn-copiar:hover {
+    background-color: #e0e7f0;
 }
 
 
