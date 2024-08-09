@@ -30,5 +30,20 @@ function btnDesencriptar() {
 function copiarTexto() {
     mensaje.select();
     document.execCommand("copy");
-    alert("Texto copiado al portapapeles");
+    
+}
+
+
+function btnPegar() {
+    navigator.clipboard.readText().then((text) => {
+        textArea.value = text;
+    }).catch(err => {
+        alert("Error al pegar el texto: " + err);
+    });
+}
+
+function btnLimpiar() {
+    textArea.value = "";
+    mensaje.value = "";
+    mensaje.style.backgroundImage = ""; // Restaurar imagen de fondo si es necesario
 }
